@@ -13,12 +13,27 @@ namespace MisPrimerasApis.Controllers
     {
         [Route("InformacionEstudiante")]
         [HttpGet]
-        public ActionResult <Estudiante> DevuelveInformacionEstudiante()
+
+        public ActionResult<Estudiante> DevuelveInformacionEstudiante(int id)
         {
-            EstudiantesRepository repositorio = new EstudiantesRepository();
-            var estudiante = repositorio.DevuelveInformacionEstudiante();
-            return Ok(estudiante);
+            try
+            {
+                EstudiantesRepository respositorio = new EstudiantesRepository();
+                if(id==0)
+                {
+                    return NotFound();
+                }
+                var estudiante = respositorio.DevuelveInformacionEstudiante();
+                return Ok(estudiante);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+             
+            
         }
+        
 
 
 
@@ -38,6 +53,7 @@ namespace MisPrimerasApis.Controllers
             return repositorio.DevuelveListadoEstudiantes().Where(x => x.EstaInscrito == true).ToList();
         }
 
+
         [Route("ListadoEstudiantesInscritos")]
         [HttpGet]
         public List<Estudiante> DevuelveListadoEstudiantesPorNombre(string nombre)
@@ -45,5 +61,7 @@ namespace MisPrimerasApis.Controllers
             EstudiantesRepository repositorio = new EstudiantesRepository();
             return repositorio.DevuelveListadoEstudiantes().Where(x => x.Nombre == nombre).ToList();
         }
+
     }
+
 }
