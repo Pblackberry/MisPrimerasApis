@@ -16,24 +16,8 @@ namespace MisPrimerasApis.Controllers
 
         public ActionResult<Estudiante> DevuelveInformacionEstudiante(int id)
         {
-            try
-            {
-                EstudiantesRepository respositorio = new EstudiantesRepository();
-                if(id==0)
-                {
-                    return NotFound();
-                }
-                var estudiante = respositorio.DevuelveInformacionEstudiante();
-                return Ok(estudiante);
-            }
-            catch (Exception)
-            {
-                return BadRequest();
-            }
-             
-            
         }
-        
+
 
 
 
