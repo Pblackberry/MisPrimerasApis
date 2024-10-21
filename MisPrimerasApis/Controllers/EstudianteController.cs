@@ -13,11 +13,11 @@ namespace MisPrimerasApis.Controllers
     {
         [Route("InformacionEstudiante")]
         [HttpGet]
-        public Estudiante DevuelveInformacionEstudiante()
+        public ActionResult <Estudiante> DevuelveInformacionEstudiante()
         {
             EstudiantesRepository repositorio = new EstudiantesRepository();
             var estudiante = repositorio.DevuelveInformacionEstudiante();
-            return estudiante;
+            return Ok(estudiante);
         }
 
 
